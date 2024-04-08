@@ -7,10 +7,16 @@ const practiceSkill = document.querySelector("#practice-skill");
 const practiceGame = document.querySelector("#practice-game");
 let planKey; 
 
-// This function populates the drill cards to the drill container
+// This function populates cards to the drill container
 // this will be called by clicking on the buttons in the nav
 function populateDrills(drillType) {
     const cardContainer = document.querySelector("#card-container");
+
+    // testing drilltype
+    console.log(drillType);
+    /**
+     * drillType will be an array of objects [{},{},{}]
+    */
     
     // clear card-container
     cardContainer.innerHTML = '';
@@ -21,31 +27,56 @@ function populateDrills(drillType) {
         let title = drillType[i].name;
         let description = drillType[i].description;
         let image = drillType[i].image;
+        let video = drillType[i].video;
 
-        cardContainer.innerHTML += createCard(title, description, image);
+        cardContainer.innerHTML += createCard(title, description, image, video);
     }
     // add an event listener to the newly created card buttons
-    // 
     document.querySelectorAll(".drill-card button").forEach(addbtn => {
         addbtn.addEventListener('click', e => addToPlan(e.currentTarget));
     });
 }
 // this function returns the card html (in the form of a string)
 // called within populateDrills() function 
-function createCard(title, description, image){
-    return `
-    <div class="drill-card">
-        <div class="media-container">
-            <img src="${image}" alt="Drill Image">
+function createCard(title, description, image, video){
+    if(image != ""){
+        return `
+        <div class="drill-card">
+            <div class="media-container">
+                <img src="${image}" alt="Drill Image">
+            </div>
+            <div class="card-contents">
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <button>Add</button>
+            </div> 
         </div>
-        <div class="card-contents">
-            <h2>${title}</h2>
-            <p>${description}</p>
-            <button>Add</button>
+        `;
+    }else if(video != ""){
+        return `
+        <div class="drill-card">
+            <div class="media-container">
+                ${video}
+            </div>
+            <div class="card-contents">
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <button>Add</button>
+            </div>
         </div>
-        
-    </div>
-    `;
+        `;
+    }else{
+        return `
+        <div class="drill-card">
+            <div class="card-contents">
+                <h2>${title}</h2>
+                <p>${description}</p>
+                <button>Add</button>
+            </div>
+        </div>
+        `;
+    }
+    
 }
 // this function determines the btn ID and calls the populateDrills() function
 // to populate the appropriate drill type 
@@ -103,7 +134,6 @@ function addToPlan(e){
     // call the populateFromStorage() function to output the drills
     // from the localStorage
     populateFromStorage();
-
 }
 // this function takes the data stored in localstorage and outputs it onto the page
 // this is so if user refreshes, any data kept will still be outputted
@@ -117,7 +147,7 @@ function populateFromStorage(){
         if(values[key] != null){
             let parts = values[key].split("|");
             let drillDescription = parts[1];
-            console.log(parts, drillDescription);
+            // console.log(parts, drillDescription);
 
             let nameHtml = document.createElement("h3");
             nameHtml.innerHTML = parts[0];
@@ -141,21 +171,17 @@ function populateFromStorage(){
                     console.log("Error in addToPlan Switch statement");
             }
         };
-
-        
     });
-    console.log(values);
+    // console.log(values);
 
     
 };
 populateFromStorage();
 
-// IIFE for clear button on the practice plan section
+// for clear button on the practice plan section
 function clearStorage(){
     const clearBtn = document.querySelector("#practice-container button");
     clearBtn.addEventListener('click', e =>{
-        // testing button
-        alert("Clear Button pressed");
         // clear localstorage
         localStorage.clear();
 
@@ -181,5 +207,6 @@ clearStorage();
 - create a favorite tab with favorited drills
 - reference (Thrive volleyball, )
 - create different html element for cards based on the media in drills.js / if its an image or video or none
+- update video linking; entire string, etc 
 */
 

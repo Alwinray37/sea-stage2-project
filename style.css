@@ -44,14 +44,17 @@ main{
     align-items: center;
     justify-content: space-around;
     padding: 10px;
-    /* background-color: lightyellow; */
+    gap: 10px;
+    /* background-color: rgba(0, 0, 0,); */
 }
 nav button{
-    width: 150px;
+    flex: 1;
+    width: auto;
     height: 30px;
     background-color: rgba(255, 255, 255, 0.75);
     color: rgb(50, 50, 50);
     font-size: 16px;
+    font-weight: bolder;
 }
 .selected {
     box-shadow: 0 0 4px 0 gray;
@@ -61,7 +64,7 @@ nav button:hover{
 }
 #card-container{
     /* outline: 1px dotted red; */
-    box-shadow: 0 0 4px 0 gray;
+    /* box-shadow: 0 0 4px 0 gray; */
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
@@ -108,7 +111,7 @@ h4{
     /* background-color: lightpink; */
     box-shadow: 0 0 4px 0px gray;
     width: 300px;
-    min-height: 350px;
+    /* min-height: 350px; */
     border-radius: 10px;
     /* overflow: auto; */
 }
@@ -129,11 +132,21 @@ h4{
     gap: 10px;
     padding: 10px;
 }
-.footer {
+footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    background-color: rgba(0, 0, 0, .3);
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    color: whitesmoke;
     padding: 10px;
+    gap: 10px;
+}
+footer p{
+    margin: 0;
+}
+footer a{
+    color: whitesmoke;
 }
 
 button {

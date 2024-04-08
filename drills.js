@@ -13,7 +13,8 @@ export const warmUpDrills = [
     {
         name: "Team Pepper",
         description: "Two hitters on the wings, setter in the middle, defenders all back row. Setter alternates setting outside and rightside, hitters hit BACK into the same side of the court (not over the net), defenders pass back to setter.",
-        image: ""
+        image: "",
+        video: `<iframe width="300" height="170" src="https://www.youtube.com/embed/_FEAQt4pVN4" title="Six Person Pepper Drill" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
     },
     {
         name: "Dot Drill",
@@ -33,7 +34,8 @@ export const warmUpDrills = [
     {
         name: "Pepper",
         description: "Pass-set-hit sequence. Players in pairs or can have variation, usually one touch.",
-        image: ""
+        image: "",
+        video: ""
     }
 ];
 
@@ -41,32 +43,38 @@ export const skillDrills = [
     {
         name: "Dig and Chase",
         description: "Players receive two balls, first ball is a downball, second ball is a chase ball. Focus on reaction and moving towards the ball to get it up.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Dig-Tip-Chase",
         description: "3-ball drill, players will receive 3 balls; downball, tip ball, and a chase ball. Players must dig the down ball, then pickup the tip ball, then chase the chase ball.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Setting Triangle",
         description: "Players form a triangle and set. Focus on getting squared and finishing to target.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Servers vs Passers",
         description: "Players divide in two groups, one group focuses on serves and tries to get aces, other group focus on receive. Up to the coach on hoe they'd like to incorporate a point system.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Defensive Transitions",
         description: "Players work on footwork transitions into defensive spots. Blocking, and digging positions.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Offensive Transitions",
         description: "Players work on transitioning from a defensive position into their offensive positions on the court.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Half Court Serve Receive",
@@ -84,31 +92,37 @@ export const gameDrills = [
     {
         name: "Queens",
         description: "There's a winner side, and a challenger side. the winner side only has one team and they play to stay on that side until challengers win and move to winners side.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "USA",
         description: "Players scrimmage for one BIG point by winning 3 small points in a row. First ball is a free ball, second is a downball, third is a serve or a chase ball. At any point one side loses the rally, chance goes to the other side.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "18-22",
         description: "This is a high pressure mini game. One side has an advantage with score starting at 22, the other starts at 18. game to 25.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Quiet But One",
         description: "Regular scrimmage, however everyone is quiet except one person making all the calls.",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Tug-of-War",
         description: "Game starts at 5, one side tries to get to 10, while the other tries to get to 0 by winning rallies",
-        image: ""
+        image: "",
+        video: ""
     },
     {
         name: "Specific Killer",
         description: "Scrimmage game, however only one player or position is able to make a score.",
-        image: ""
+        image: "",
+        video: ""
     }
 ]
