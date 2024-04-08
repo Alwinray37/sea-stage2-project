@@ -5,8 +5,8 @@ body{
     padding: 0;
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rgb(40, 40, 40);
-    color: white;
+    /* background-color: rgb(40, 40, 40);
+    color: white; */
 }
 
 .main-header {
@@ -36,7 +36,7 @@ main{
     /* box-shadow: 0px 0px 4px 1px lightgray; */
     border-radius: 10px;
     min-height: 600px;
-    flex-grow: 2;
+    flex: 2;
     /* padding: 10px; */
 }
 #drill-container nav{
@@ -69,8 +69,12 @@ nav button:hover{
     padding: 10px;
     border-radius: 10px;
 }
+#card-container p{
+    margin: 0;
+}
 #practice-container{
-    background-color: rgb(0, 94, 125);
+    /* background-color: rgb(0, 94, 125); */
+    box-shadow: 0 0 4px 0 gray;
     width: 600px;
     min-height: 600px;
     border-radius: 10px;
@@ -79,7 +83,10 @@ nav button:hover{
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    flex-grow: 1;
+    flex: 1;
+}
+h2{
+    margin: 0;
 }
 h3{
     margin: 0;
@@ -103,7 +110,7 @@ h4{
     width: 300px;
     min-height: 350px;
     border-radius: 10px;
-    overflow: auto;
+    /* overflow: auto; */
 }
 .drill-card .media-container{
     background-color: antiquewhite;
@@ -116,7 +123,11 @@ h4{
     width: 100%;
 }
 .drill-card .card-contents{
-    margin: 0 10px;
+    /* margin: 0 10px; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
 }
 .footer {
     display: flex;

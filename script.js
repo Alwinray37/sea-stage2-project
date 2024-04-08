@@ -80,6 +80,7 @@ document.querySelectorAll("nav button").forEach(btn => {
             btn.classList = '';
         })
         // toggle "selected" class when nav button is clicked
+        // changes the css so it persists
         btn.classList = "selected";
         });
 })
@@ -153,6 +154,8 @@ populateFromStorage();
 function clearStorage(){
     const clearBtn = document.querySelector("#practice-container button");
     clearBtn.addEventListener('click', e =>{
+        // testing button
+        alert("Clear Button pressed");
         // clear localstorage
         localStorage.clear();
 
@@ -177,6 +180,6 @@ clearStorage();
 - separate the add to plan function from localstorage
 - create a favorite tab with favorited drills
 - reference (Thrive volleyball, )
-
+- create different html element for cards based on the media in drills.js / if its an image or video or none
 */
 
