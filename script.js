@@ -16,7 +16,7 @@ function populateDrills(drillType) {
     const cardContainer = document.querySelector("#card-container");
 
     // testing drilltype
-    console.log(drillType);
+    // console.log(drillType);
     /**
      * drillType will be an array of objects [{},{},{}]
     */
@@ -139,7 +139,7 @@ function addToPlan(e){
                     return;
                 }
                 else{
-                    console.log("went through warmupLS loop")
+                    // console.log("went through warmupLS loop")
                 } 
             }
             warmupKeyLS.push({[drillName] : drillDescription}); // if it doesnt exist, push an obj based on the selected target data
@@ -154,7 +154,7 @@ function addToPlan(e){
                     return;
                 }
                 else{
-                    console.log("went through skillLS loop")
+                    // console.log("went through skillLS loop")
                 } 
             }
             skillKeyLS.push({[drillName] : drillDescription});
@@ -169,7 +169,7 @@ function addToPlan(e){
                     return;
                 }
                 else{
-                    console.log("went through gameLS loop")
+                    // console.log("went through gameLS loop")
                 } 
             }
             gameKeyLS.push({[drillName] : drillDescription});
@@ -237,7 +237,8 @@ function populateFromStorage(){
             }
         }
     }
-    
+    // add the remove function 
+    removeDrill();
 };
 populateFromStorage();
 
@@ -261,6 +262,28 @@ function clearStorage(){
     });
 };
 clearStorage();
+
+function removeDrill(){
+    let drill = document.querySelectorAll("#practice-container h3");
+    drill.forEach(item => {item.addEventListener('dblclick', e => {
+        // alert(item.textContent);
+        let drillName = item.textContent;
+
+        // go through each array to see if it exists
+        warmupKeyLS = warmupKeyLS.filter(obj => Object.keys(obj)[0] !== drillName);
+        skillKeyLS = skillKeyLS.filter(obj => Object.keys(obj)[0] !== drillName);
+        gameKeyLS = gameKeyLS.filter(obj => Object.keys(obj)[0] !== drillName);
+        // console.log("warmupLS: ", warmupKeyLS);
+        // console.log("skillLS: ", skillKeyLS);
+        // console.log("gameLS: ", gameKeyLS);
+
+        // update localStorage by setting the filtered arrays to corresponding keys
+        localStorage.setItem("warmup", JSON.stringify(warmupKeyLS));
+        localStorage.setItem("skill", JSON.stringify(skillKeyLS));
+        localStorage.setItem("game", JSON.stringify(gameKeyLS));
+        populateFromStorage();
+    })});
+}
 
 
 
