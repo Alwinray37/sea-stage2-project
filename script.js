@@ -220,15 +220,15 @@ function populateFromStorage(){
                 switch(keyLS){
                     case warmupKeyLS:
                         practiceWarmup.append(nameHtml);
-                        // practiceWarmup.innerHTML += drillDescription;
+                        practiceWarmup.innerHTML += drillDescription;
                         break;
                     case skillKeyLS:
                         practiceSkill.append(nameHtml);
-                        // practiceSkill.innerHTML += drillDescription;
+                        practiceSkill.innerHTML += drillDescription;
                         break;
                     case gameKeyLS:
                         practiceGame.append(nameHtml);
-                        // practiceGame.innerHTML += drillDescription;
+                        practiceGame.innerHTML += drillDescription;
                         break;
                     default:
                         console.log("Error in practicePlanOutput function switch statement.");
@@ -263,6 +263,11 @@ function clearStorage(){
 };
 clearStorage();
 
+// this function adds event listener to the drill name titles that will remove it
+// called every time the practice plan is populated, called within populateFromStorage
+// queries the h3 elements, adds an event listener
+// filters through the global arrays to remove the selected drill name
+// update localStorage
 function removeDrill(){
     let drill = document.querySelectorAll("#practice-container h3");
     drill.forEach(item => {item.addEventListener('dblclick', e => {
