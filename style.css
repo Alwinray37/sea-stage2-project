@@ -167,7 +167,9 @@ button {
     color: white;
     cursor: pointer;
 }
-
+.oneClick{
+    text-decoration: line-through;
+}
 @media (max-width: 600px){
     main{
         flex-direction: column;

@@ -288,6 +288,11 @@ function removeDrill(){
         localStorage.setItem("game", JSON.stringify(gameKeyLS));
         populateFromStorage();
     })});
+
+    // this is to put a line through it on one click
+    drill.forEach(item => {item.addEventListener('click', e => {
+        item.classList.toggle("oneClick");
+    })});
 }
 
 
