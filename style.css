@@ -78,8 +78,8 @@ nav button:hover{
 #practice-container{
     /* background-color: rgb(0, 94, 125); */
     box-shadow: 0 0 4px 0 gray;
-    width: 600px;
-    min-height: 600px;
+    width: 100%;
+    /* min-height: 600px; */
     border-radius: 10px;
     /* position: fixed; */
     display: flex;
@@ -165,4 +165,10 @@ button {
 ::-webkit-scrollbar{
     border-radius: 10px;
     background-color: rgba(223, 223, 223, 0.531);
+}
+
+@media (max-width: 600px){
+    main{
+        flex-direction: column;
+    }
 }

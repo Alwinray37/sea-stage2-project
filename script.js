@@ -208,5 +208,6 @@ clearStorage();
 - reference (Thrive volleyball, )
 - create different html element for cards based on the media in drills.js / if its an image or video or none
 - update video linking; entire string, etc 
+- create a modular for see more button
 */
 
