@@ -6,6 +6,9 @@ const practiceWarmup = document.querySelector("#practice-warmup");
 const practiceSkill = document.querySelector("#practice-skill");
 const practiceGame = document.querySelector("#practice-game");
 let planKey; 
+let warmupKeyLS = [];
+let skillKeyLS = [];
+let gameKeyLS = [];
 
 // This function populates cards to the drill container
 // this will be called by clicking on the buttons in the nav
@@ -115,70 +118,131 @@ document.querySelectorAll("nav button").forEach(btn => {
         btn.classList = "selected";
         });
 })
-// this function adds the selected drill into localStorage
-// will then pull data from localStorage to practice plan by calling populateFromStorage()
+// this function adds the selected drillcard into localStorage
+// grabs the drillName from h2, and description from p element
+// check if it exists in the warmupKeyLS, skillKeyLS, or gameKeyLS array
+// pushes the object into the array based on plankey
+// re-stores it in localStorage as a string
 function addToPlan(e){
     // get the drill name and description of selected target
     let drillName = e.parentElement.querySelector('h2').textContent;
     let drillDescription = e.parentElement.querySelector('p').textContent;
-    // combine name and desc into one string
-    let value = drillName + "|" + drillDescription;
-    console.log(value);
-    /** value will look like this:
-     * {"planKey": "drillName | drillDescription"}
-     */
 
-    // add the drill to local storage
-    localStorage.setItem(planKey, value);
-
-    // call the populateFromStorage() function to output the drills
-    // from the localStorage
+    // switch statement for checking if drill is already in the array 
+    // based on planKey, checks if an object[key] exists within its respective array
+    // the respective arrays are global arrays at the top
+    switch(planKey){
+        case "warmup":
+            for(let obj of warmupKeyLS){// iterate through each element of the array
+                if (obj[drillName]){ // check if it exists
+                    alert("Drill already added.");
+                    return;
+                }
+                else{
+                    console.log("went through warmupLS loop")
+                } 
+            }
+            warmupKeyLS.push({[drillName] : drillDescription}); // if it doesnt exist, push an obj based on the selected target data
+            // console.log("warmupLS: ", warmupKeyLS);     
+            // store the array values to localStorage as json string
+            localStorage.setItem(planKey, JSON.stringify(warmupKeyLS)); // update the value in localStorage
+            break;
+        case "skill":
+            for(let obj of skillKeyLS){
+                if (obj[drillName]){
+                    alert("Drill already added.");
+                    return;
+                }
+                else{
+                    console.log("went through skillLS loop")
+                } 
+            }
+            skillKeyLS.push({[drillName] : drillDescription});
+            console.log("skillKeyLS: ", skillKeyLS); 
+            // store the array values to localStorage as json string
+            localStorage.setItem(planKey, JSON.stringify(skillKeyLS));   
+            break;
+        case "game": 
+            for(let obj of gameKeyLS){
+                if (obj[drillName]){
+                    alert("Drill already added.");
+                    return;
+                }
+                else{
+                    console.log("went through gameLS loop")
+                } 
+            }
+            gameKeyLS.push({[drillName] : drillDescription});
+            console.log("gameLS: ", gameKeyLS); 
+            // store the array values to localStorage as json string
+            localStorage.setItem(planKey, JSON.stringify(gameKeyLS));
+            break;
+        default:
+            console.log("went through switch statement. may have an error");
+    };
+ 
+    // populate the drills from localStorage into practice plan 
     populateFromStorage();
 }
-// this function takes the data stored in localstorage and outputs it onto the page
-// this is so if user refreshes, any data kept will still be outputted
+// this function takes the data stored in localStorage and outputs it onto the practice plan
+// using localStorage so data persists until the browser is closed.
+// first it should add whatever is currently in localStorage into the global arrays (warmupKeyLS, skillKeyLS, gameKeyLS)
+// then output the data into the practice plan
 function populateFromStorage(){
-    let keys = ["warmup", "skill", "game"];
-    let values = {};
-    keys.forEach(key=>{
-        values[key] = localStorage.getItem(key);
-        // split the value as it comes in one string 
-        // check if key is empty, if not, perform population 
-        if(values[key] != null){
-            let parts = values[key].split("|");
-            let drillDescription = parts[1];
-            // console.log(parts, drillDescription);
+    // check if key exists in localStorage so it doesnt set the array variable to null
+    if(localStorage.getItem("warmup")){ // if key exists...
+        warmupKeyLS = JSON.parse(localStorage.getItem("warmup")); // set the global variable to its value
+    }
+    if(localStorage.getItem("skill")){
+        skillKeyLS = JSON.parse(localStorage.getItem("skill"));
+    }
+    if(localStorage.getItem("game")){
+        gameKeyLS = JSON.parse(localStorage.getItem("game"));
+    }
 
-            let nameHtml = document.createElement("h3");
-            nameHtml.innerHTML = parts[0];
-            switch(key){
-                case "warmup":
-                    practiceWarmup.innerHTML = '';
-                    practiceWarmup.append(nameHtml);
-                    practiceWarmup.innerHTML += drillDescription; 
-                    break;
-                case "skill":
-                    practiceSkill.innerHTML = '';
-                    practiceSkill.append(nameHtml);
-                    practiceSkill.innerHTML += drillDescription; 
-                    break;
-                case "game":
-                    practiceGame.innerHTML = '';
-                    practiceGame.append(nameHtml);
-                    practiceGame.innerHTML += drillDescription; 
-                    break;
-                default:
-                    console.log("Error in addToPlan Switch statement");
+    // clear the practice plan sections
+    // output the data to the respective sections
+    practiceWarmup.innerHTML = '';
+    practiceSkill.innerHTML = '';
+    practiceGame.innerHTML = '';
+    practicePlanOutput(warmupKeyLS);
+    practicePlanOutput(skillKeyLS);
+    practicePlanOutput(gameKeyLS);
+
+    function practicePlanOutput(keyLS){
+        for(let obj of keyLS){
+            for(let prop in obj){
+                let drillName = prop;
+                let drillDescription = obj[prop];
+                let nameHtml = document.createElement('h3');
+                nameHtml.innerHTML = drillName;
+                
+                switch(keyLS){
+                    case warmupKeyLS:
+                        practiceWarmup.append(nameHtml);
+                        // practiceWarmup.innerHTML += drillDescription;
+                        break;
+                    case skillKeyLS:
+                        practiceSkill.append(nameHtml);
+                        // practiceSkill.innerHTML += drillDescription;
+                        break;
+                    case gameKeyLS:
+                        practiceGame.append(nameHtml);
+                        // practiceGame.innerHTML += drillDescription;
+                        break;
+                    default:
+                        console.log("Error in practicePlanOutput function switch statement.");
+                }
+               
             }
-        };
-    });
-    // console.log(values);
-
+        }
+    }
     
 };
 populateFromStorage();
 
 // for clear button on the practice plan section
+// reset the localStorage, practice plan secttions and global variables
 function clearStorage(){
     const clearBtn = document.querySelector("#practice-container button");
     clearBtn.addEventListener('click', e =>{
@@ -189,9 +253,17 @@ function clearStorage(){
         practiceWarmup.innerHTML = '';
         practiceSkill.innerHTML = '';
         practiceGame.innerHTML = '';
+
+        // reset global variables for local storage
+        warmupKeyLS = [];
+        skillKeyLS = [];
+        gameKeyLS = [];
     });
 };
 clearStorage();
+
+
+
 // TODO: 
 /*
 - add a clear plan button and remove btn

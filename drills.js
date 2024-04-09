@@ -2,7 +2,7 @@
 export const warmUpDrills = [
     {
         name: "Butterfly",
-        description: "PLayers work on throwing over the net from one side, receiver passes to target in the setter position, target then goes to throw from their side on the net to the other side. The movement of the players follows the ball; tosser becomes passer, passer becomes target, target becomes tosser.",
+        description: "Players work on throwing over the net from one side, receiver passes to target in the setter position, target then goes to throw from their side on the net to the other side. The movement of the players follows the ball; tosser becomes passer, passer becomes target, target becomes tosser.",
         image: "https://thrivevolleyball.com/wp-content/uploads/2019/05/butterfly-drill-cover.jpg"
     },
     {
